@@ -1,0 +1,134 @@
+.user-info-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 400px;
+  margin: 40px auto;
+  background: var(--white, #FFF);
+  padding: 32px 24px;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(15, 71, 106, 0.08);
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .user-info-form {
+    max-width: 500px;
+    padding: 28px 20px;
+  }
+}
+
+@media (min-width: 900px) {
+  .user-info-form {
+    max-width: 600px;
+    padding: 32px 28px;
+  }
+}
+
+.user-info-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  color: var(--dark-blue, #0F476A);
+  gap: 6px;
+  font-weight: 700; /* Make labels bold */
+}
+
+.user-info-form input,
+.user-info-form select {
+  padding: 10px 12px;
+  border: 2px solid var(--light-grey, #DDDDDD);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--white, #FFF);
+  color: var(--dark-blue, #0F476A);
+  transition: border 0.2s;
+  outline: none;
+}
+
+.user-info-form input:focus,
+.user-info-form select:focus {
+  border: 2px solid var(--light-blue, #73D5E4);
+}
+
+.user-info-form .error {
+  color: var(--red, #A42F2F);
+  font-size: 0.95rem;
+  margin-top: 2px;
+}
+
+.user-info-form button[type="submit"] {
+  margin-top: 12px;
+  padding: 14px 0;
+  background: var(--dark-blue, #0F476A);
+  color: var(--white, #FFF);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-width: 160px;
+}
+
+.user-info-form button[type="submit"]:hover {
+  background: var(--light-blue, #73D5E4);
+  color: var(--white, #FFF);
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+}
+
+.row .half {
+  flex: 1 1 0;
+  width: calc(50% - 8px);
+  max-width: calc(50% - 8px);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.form-viewport-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream-white, #FEFCF8);
+}
+
+.form-title {
+  text-align: center;
+  color: var(--dark-blue, #0F476A);
+  margin-bottom: 24px;
+  font-size: 2.6rem; /* Increased size */
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  /* Stack all .row elements vertically by default */
+  .row {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .row .half {
+    max-width: 100%;
+    width: 100%;
+  }
+  /* But keep Age/Gender row side by side */
+  .age-gender-row {
+    flex-direction: row;
+  }
+  .age-gender-row .half {
+    max-width: 50%;
+    width: 50%;
+  }
+  .user-info-form {
+    width: 90vw;
+    max-width: 90vw;
+    min-width: unset;
+    margin: 24px auto;
+    padding: 20px 8px;
+  }
+}

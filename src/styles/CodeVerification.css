@@ -1,0 +1,170 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --white: #FFFFFF;
+  --cream-white: #FEFCF8;
+  --light-blue: #73D5E4;
+  --dark-blue: #0F476A;
+  --light-grey: #DDDDDD;
+  --dark-grey: #C1C1C1;
+  --red: #A42F2F;
+  --green: #48C857;
+}
+
+.App {
+  text-align: center;
+  height: 100vh;
+}
+
+.App-logo {
+  width: 80%;
+  max-width: 340px;
+  height: auto;
+  display: block;
+  margin: 0 auto 2px auto; /* Reduced space below the image */
+  pointer-events: none;
+}
+
+/* @media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+} */
+
+.App-header {
+  background-color: var(--cream-white);
+  min-height: 100dvh; /* Use dynamic viewport height for better compatibility */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* vertical centering */
+  font-size: calc(10px + 2vmin);
+  color: var(--white);
+  padding: 24px;
+}
+
+.App-header h2 {
+  color: var(--light-blue);
+  margin-bottom: 2px; /* Less space below h2 */
+}
+
+.App-header p {
+  color: var(--dark-blue);
+  margin-bottom: 8px; /* Less space below paragraph */
+}
+
+.App-link {
+  color: var(--light-blue);
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.code-inputs {
+  display: flex;
+  gap: 24px; /* Increased gap between inputs */
+  margin: 24px 0;
+}
+
+.code-input {
+  width: 44px;
+  height: 56px;
+  font-size: 2rem;
+  text-align: center;
+  border: 2px solid var(--light-grey);
+  border-radius: 8px;
+  background: var(--cream-white);
+  color: var(--dark-blue);
+  outline: none;
+  transition: border 0.2s;
+}
+.code-input:focus {
+  border: 2px solid var(--light-blue);
+}
+
+.button-row {
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.cancel-btn {
+  background: var(--white);
+  color: var(--light-blue);
+  border: 2px solid var(--light-blue);
+  border-radius: 6px;
+  padding: 10px 28px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.cancel-btn:hover {
+  background: var(--light-blue);
+  color: var(--white);
+}
+
+.verify-btn {
+  background: var(--dark-blue);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  padding: 22px 64px;      /* Bigger padding */
+  font-size: 1.6rem;       /* Bigger font size */
+  min-width: 260px;        /* Bigger min width */
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.verify-btn:hover {
+  background: var(--light-blue);
+}
+
+@media (max-width: 600px) {
+  .App-header {
+    font-size: 1rem;
+    padding: 12px;
+  }
+  .App-logo {
+    height: 64vmin; /* Make logo bigger on mobile */
+  }
+  .code-inputs {
+    gap: 18px; /* Slightly bigger gap on mobile */
+    justify-content: center; /* Center inputs horizontally */
+    display: flex;           /* Ensure flex is set */
+    width: 100%;             /* Optional: ensures full width for centering */
+  }
+  .code-input {
+    width: 32px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  .verify-btn {
+    padding: 16px 12px;
+    font-size: 1.2rem;
+    min-width: 90vw; /* Button takes most of the screen width */
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 601px) {
+  .App-logo {
+    max-width: 480px; /* Bigger logo for tablets and desktop */
+  }
+  .verify-btn {
+    min-width: 340px; /* Wider button for tablets and desktop */
+  }
+  .code-inputs {
+    gap: 36px; /* Increased gap between inputs on desktop */
+  }
+}

@@ -1,0 +1,17 @@
+.custom-alert {
+  position: fixed;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: #d32f2f;
+  color: #fff;
+  padding: 18px 32px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  pointer-events: none;
+  min-width: 220px;
+  text-align: center;
+}

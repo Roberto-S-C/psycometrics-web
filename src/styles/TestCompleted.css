@@ -1,0 +1,63 @@
+.test-completed-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 32px 16px;
+  background: var(--cream-white, #FEFCF8);
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.test-completed-logo {
+  width: 300px;
+  height: auto;
+  margin-bottom: 32px;
+}
+
+.test-completed-title {
+  color: var(--light-blue, #73D5E4);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.test-completed-message {
+  color: var(--dark-grey, #C1C1C1);
+  font-size: 1.4rem;
+  text-align: center;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .test-completed-logo {
+    width: 400px;
+    margin-bottom: 40px;
+  }
+  .test-completed-title {
+    font-size: 2.8rem;
+    margin-bottom: 28px;
+  }
+  .test-completed-message {
+    font-size: 1.7rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .test-completed-logo {
+    width: 500px;
+    margin-bottom: 48px;
+  }
+  .test-completed-title {
+    font-size: 3rem;
+    margin-bottom: 32px;
+  }
+  .test-completed-message {
+    font-size: 2rem;
+  }
+}

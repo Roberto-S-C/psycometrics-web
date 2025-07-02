@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Alert from "../components/Alert";
 import '../styles/UserInfoForm.css';
@@ -14,53 +14,29 @@ export default function UserInfoForm({ defaultValues = {} }) {
   const navigate = useNavigate();
   const [alert, setAlert] = useState({ show: false, message: "" });
 
-  useEffect(() => {
-    const verificationCode = localStorage.getItem("verificationCode");
-    const candidate_id = localStorage.getItem("candidate_id");
-    const hr_id = localStorage.getItem("hr_id");
-    if (!verificationCode || !candidate_id || !hr_id) {
-      navigate("/", { replace: true });
-      return;
-    }
-    fetch(
-      `${process.env.REACT_APP_API_URL}/candidates/completed-test/`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({candidate_id: candidate_id}),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if(data.status === "exists") 
-        {
-          navigate("/test", { replace: true });
-        }
-      })
-  }, [navigate]);
-
   const onSubmit = async (data) => {
-    const verificationCode = localStorage.getItem("verificationCode");
-    if (!verificationCode) {
-      navigate("/", { replace: true });
-      return;
-    }
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/candidates/${verificationCode}/`,
+        `${process.env.REACT_APP_API_URL}/candidates/`,
         {
-          method: "PUT",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         }
       );
       const responseData = await response.json();
+      if (response.status === 409) {
+        setAlert({ show: true, message: "This email is already registered." });
+        setTimeout(() => setAlert({ show: false, message: "" }), 3000);
+        return;
+      }
       if (!response.ok) {
         setAlert({ show: true, message: "There was an error submitting your information." });
         setTimeout(() => setAlert({ show: false, message: "" }), 3000);
         return;
       }
-      console.log(responseData);
+      localStorage.setItem("candidate_id", responseData.id);
+      localStorage.setItem("hr_id", responseData.hr_id);
       navigate("/test");
     } catch (error) {
       setAlert({ show: true, message: "Network error. Please try again." });

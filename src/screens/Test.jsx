@@ -15,10 +15,9 @@ export default function Test() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const code = localStorage.getItem("verificationCode");
     const candidate_id = localStorage.getItem("candidate_id");
     const hr_id = localStorage.getItem("hr_id");
-    if (!code || !candidate_id || !hr_id) {
+    if (!candidate_id || !hr_id) {
       navigate("/", { replace: true });
       return;
     }
@@ -65,10 +64,9 @@ export default function Test() {
       setTimeout(() => setAlert({ show: false, message: "" }), 2500);
       return;
     }
-    const code = localStorage.getItem("verificationCode");
     const candidate_id = localStorage.getItem("candidate_id");
     const hr_id = localStorage.getItem("hr_id");
-    if (!code || !candidate_id || !hr_id) {
+    if (!candidate_id || !hr_id) {
       navigate("/", { replace: true });
       return;
     }
@@ -79,7 +77,6 @@ export default function Test() {
       response: q.options[selected[idx]]
     }));
 
-    // Prepare the payload as requested
     const payload = {
       test_id: testId,
       candidate_id,
@@ -87,9 +84,6 @@ export default function Test() {
       responses
     };
 
-    console.log("Submitting payload:", payload);
-
-    // Send to backend
     try {
       await fetch(`${process.env.REACT_APP_API_URL}/results/`, {
         method: "POST",

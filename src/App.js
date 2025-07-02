@@ -1,13 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import CodeVerification from "./screens/CodeVerification";
 import UserInfoForm from "./screens/UserInfoForm";
 import Test from "./screens/Test";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<CodeVerification />} />
-      <Route path="/register" element={<UserInfoForm />} />
+      <Route path="/" element={<UserInfoForm/>} />
       <Route path="/test" element={<Test />} />
     </Routes>
   );

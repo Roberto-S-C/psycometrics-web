@@ -4,6 +4,7 @@ import Loading from "../components/Loading";
 import Alert from "../components/Alert";
 import TestCompleted from "../components/TestCompleted";
 import "../styles/Test.css";
+import getTest from "../scripts/getTest";
 
 export default function Test() {
   const [testId, setTestId] = useState(null);
@@ -12,6 +13,7 @@ export default function Test() {
   const [selected, setSelected] = useState({});
   const [alert, setAlert] = useState({ show: false, message: "" });
   const [completed, setCompleted] = useState(false);
+  const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,29 +24,15 @@ export default function Test() {
       return;
     }
 
-    const fetchQuestions = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/tests/?candidate_id=${candidate_id}`
-        );
-        if (response.status === 409) {
-          setAlert({ show: true, message: "Your test has already been submited" });
-          setTimeout(() => setAlert({ show: false, message: "" }), 2500);
-          setCompleted(true);
-          return;
-        }
-        if (!response.ok) {
-          navigate("/", { replace: true });
-          return;
-        }
-        const data = await response.json();
+    getTest(candidate_id)
+      .then(data => {
         setTestId(data._id);
         setQuestions(data.questions || []);
-      } catch (error) {
-        navigate("/", { replace: true });
-      }
-    };
-    fetchQuestions();
+      })
+      .catch(error => {
+        console.error("Error fetching test data:", error);
+        setAlert({ show: true, message: "Error fetching test data." });
+      });
   }, [navigate]);
 
   const handlePrev = () => setCurrent((c) => Math.max(0, c - 1));
@@ -84,24 +72,29 @@ export default function Test() {
       responses
     };
 
+    setLoading(true);
     try {
       await fetch(`${process.env.REACT_APP_API_URL}/results/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      setCompleted(true);
     } catch (error) {
       setAlert({ show: true, message: "Error enviando respuestas" });
       setTimeout(() => setAlert({ show: false, message: "" }), 2500);
-      return;
+    } finally {
+      setLoading(false);
     }
-
-    setCompleted(true);
   };
 
   const handleSelect = (idx) => {
     setSelected({ ...selected, [current]: idx });
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   if (completed) {
     return (

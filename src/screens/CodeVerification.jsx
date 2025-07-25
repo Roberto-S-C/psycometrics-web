@@ -28,18 +28,17 @@ function CodeVerification() {
       .then(res => res.json())
       .then(data => {
         setLoading(false);
-        console.log(data)
         if (data.status !== "success") {
           setError("code", { type: "manual", message: "Please enter a valid code" });
         } else {
-          localStorage.setItem("verificationCode", joinedCode); // Store code
+          localStorage.setItem("verificationCode", joinedCode);
           if (data.candidate._id) {
             localStorage.setItem("candidate_id", data.candidate._id);
           }
           if (data.candidate.hr) {
             localStorage.setItem("hr_id", data.candidate.hr);
           }
-          navigate('/register');
+          navigate('/test');
         }
       })
       .catch(() => {
@@ -53,7 +52,7 @@ function CodeVerification() {
     const newCode = [...code];
     newCode[idx] = value;
     setCode(newCode);
-    clearErrors("code"); // Clear error as soon as user types
+    clearErrors("code");
 
     if (value && idx < 5) {
       inputs.current[idx + 1].focus();

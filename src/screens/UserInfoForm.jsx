@@ -194,6 +194,11 @@ export default function UserInfoForm({ defaultValues = {} }) {
             {errors.resume && <span className="error">{errors.resume.message}</span>}
           </label>
 
+          <div className="terms-conditions">
+            <input type="checkbox" id="terms" {...register("terms", { required: "You must accept the terms and conditions" })} />
+            <label htmlFor="terms">I accept the</label> <Link to="/terms-conditions" target="_blank" rel="noopener noreferrer">&#160;terms and conditions</Link>
+          </div>
+
           <button type="submit">Submit</button>
         </form>
         <Link to="/code-verification" id="code-verification-link">Already submitted your data?</Link>

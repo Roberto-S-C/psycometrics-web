@@ -25,6 +25,10 @@
   }
 }
 
+h2{
+  text-align: center;
+}
+
 .user-info-form label {
   display: flex;
   flex-direction: column;
@@ -205,4 +209,13 @@
 
 #code-verification-link:hover {
   text-decoration: underline;
+}
+
+.terms-conditions {
+  display: flex;
+}
+
+.terms-conditions a {
+  color: var(--light-blue, #73D5E4);
+  font-weight: 600;
 }

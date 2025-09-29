@@ -81,7 +81,6 @@ export default function TermsConditions() {
             <p>Este aviso de privacidad podrá ser modificado en cualquier momento por PsycometricsAI proyect. Siendo que dichas modificaciones serán notificadas en aviso físico en el establecimiento o a través de medio electrónico. Nos reservamos el derecho de efectuar en cualquier momento modificaciones o actualizaciones al presente aviso de privacidad, para la atención de novedades legislativas, políticas internas o nuevos requerimientos para la prestación u ofrecimiento de nuestros servicios o productos. Estas modificaciones estarán disponibles al público a través de alguno de los siguientes medios:</p>
 
             <ul>
-                <li>Anuncios visibles en nuestros establecimientos.</li>
                 <li>Directamente en el sistema de PsycometricsAI.</li>
                 <li>Envío por medio de correo electrónico.</li>
             </ul>

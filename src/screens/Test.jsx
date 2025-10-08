@@ -35,7 +35,7 @@ export default function Test() {
       });
   }, [navigate]);
 
-  const handlePrev = () => setCurrent((c) => Math.max(0, c - 1));
+  const handlePrev = () => setCurrent((current) => Math.max(0, current - 1));
 
   const handleNext = () => {
     if (selected[current] === undefined) {
@@ -43,7 +43,7 @@ export default function Test() {
       setTimeout(() => setAlert({ show: false, message: "" }), 2500);
       return;
     }
-    setCurrent((c) => Math.min(questions.length - 1, c + 1));
+    setCurrent((current) => Math.min(questions.length - 1, current + 1));
   };
 
   const handleFinish = async () => {

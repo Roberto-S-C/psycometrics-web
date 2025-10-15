@@ -82,10 +82,10 @@ export default function UserInfoForm({ defaultValues = {} }) {
             <input
               type="email"
               {...register("email", {
-                required: "Email is required",
+                required: "Email requerido",
                 pattern: {
                   value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  message: "Invalid email address",
+                  message: "Dirección de correo electrónico no válida",
                 },
               })}
             />
@@ -94,18 +94,18 @@ export default function UserInfoForm({ defaultValues = {} }) {
 
           <div className="row">
             <label className="half">
-              Name
+              Nombre
               <input
                 type="text"
-                {...register("first_name", { required: "Name is required" })}
+                {...register("first_name", { required: "Nombre requerido" })}
               />
               {errors.first_name && <span className="error">{errors.first_name.message}</span>}
             </label>
             <label className="half">
-              Last Name
+              Apellido
               <input
                 type="text"
-                {...register("last_name", { required: "Last name is required" })}
+                {...register("last_name", { required: "Apellido requerido" })}
               />
               {errors.last_name && <span className="error">{errors.last_name.message}</span>}
             </label>
@@ -113,48 +113,48 @@ export default function UserInfoForm({ defaultValues = {} }) {
 
           <div className="row age-gender-row">
             <label className="half">
-              Age
+              Edad
               <input
                 type="number"
                 min="18"
                 max="100"
                 step="1"
                 {...register("age", {
-                  required: "Age is required",
-                  min: { value: 18, message: "Age must be at least 18" },
-                  max: { value: 100, message: "Age cannot exceed 100" },
+                  required: "Edad requerida",
+                  min: { value: 18, message: "La edad debe ser al menos 18" },
+                  max: { value: 100, message: "La edad no puede exceder 100" },
                   pattern: {
                     value: /^[1-9][0-9]*$/,
-                    message: "Age must be a positive number",
+                    message: "La edad debe ser un número positivo",
                   },
                 })}
               />
               {errors.age && <span className="error">{errors.age.message}</span>}
             </label>
             <label className="half">
-              Gender
+              Género
               <select
-                {...register("gender", { required: "Gender is required" })}
+                {...register("gender", { required: "Género requerido" })}
               >
                 <option value=""></option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="male">Masculino</option>
+                <option value="female">Femenino</option>
               </select>
               {errors.gender && <span className="error">{errors.gender.message}</span>}
             </label>
           </div>
 
           <label>
-            Phone
+            Teléfono
             <input
               type="tel"
-              {...register("phone", { required: "Phone is required" })}
+              {...register("phone", { required: "Teléfono requerido" })}
             />
             {errors.phone && <span className="error">{errors.phone.message}</span>}
           </label>
 
           <label>
-            Upload Resume (PDF only)
+            Subir Currículum (Formato PDF)
             <div className="custom-file-input">
               {watch("resume")?.[0]?.name ? (
                 <>
@@ -167,7 +167,7 @@ export default function UserInfoForm({ defaultValues = {} }) {
                       setValue("resume", null); // Clear the value in react-hook-form
                     }}
                   >
-                    Remove File
+                    Remover Archivo
                   </button>
                 </>
               ) : (
@@ -175,7 +175,7 @@ export default function UserInfoForm({ defaultValues = {} }) {
                   type="button"
                   onClick={() => document.querySelector('input[name="resume"]').click()} // Trigger file input
                 >
-                  Choose File
+                  Seleccionar Archivo
                 </button>
               )}
               <input
@@ -183,7 +183,7 @@ export default function UserInfoForm({ defaultValues = {} }) {
                 accept=".pdf"
                 style={{ display: "none" }} // Hide the file input
                 {...register("resume", {
-                  required: "Please upload your resume",
+                  required: "Por favor sube tu currículum",
                   validate: {
                     isPdf: (fileList) =>
                       fileList && fileList.length === 1 && fileList[0]?.type === "application/pdf" || "Only one PDF file is allowed",
@@ -195,13 +195,13 @@ export default function UserInfoForm({ defaultValues = {} }) {
           </label>
 
           <div className="terms-conditions">
-            <input type="checkbox" id="terms" {...register("terms", { required: "You must accept the terms and conditions" })} />
-            <label htmlFor="terms">I accept the</label> <Link to="/terms-conditions" target="_blank" rel="noopener noreferrer">&#160;terms and conditions</Link>
+            <input type="checkbox" id="terms" {...register("terms", { required: "Debes aceptar los términos y condiciones" })} />
+            <label htmlFor="terms">Acepto los&nbsp;</label><Link to="/terms-conditions" target="_blank" rel="noopener noreferrer">términos y condiciones</Link>
           </div>
 
-          <button type="submit">Submit</button>
+          <button type="submit">Enviar</button>
         </form>
-        <Link to="/code-verification" id="code-verification-link">Already submitted your data?</Link>
+        <Link to="/code-verification" id="code-verification-link">¿Ya enviaste tus datos?</Link>
       </div>
     </div>
   );

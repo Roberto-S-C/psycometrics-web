@@ -73,8 +73,8 @@ function CodeVerification() {
     <div className="App">
       <header className="App-header">
         <img src={Logo} className="App-logo" alt="logo" />
-        <h2>Verification Code</h2>
-        <p>Enter the 6-digit code sent by your recruiter</p>
+        <h2>Código de Verificación</h2>
+        <p>Ingresa el código de 6 dígitos enviado por tu reclutador</p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="code-inputs">
             {[...Array(6)].map((_, idx) => (

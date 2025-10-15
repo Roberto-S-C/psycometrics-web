@@ -29,7 +29,7 @@ function CodeVerification() {
       .then(data => {
         setLoading(false);
         if (data.status !== "success") {
-          setError("code", { type: "manual", message: "Please enter a valid code" });
+          setError("code", { type: "manual", message: "Por favor ingresa un código válido" });
         } else {
           localStorage.setItem("verificationCode", joinedCode);
           if (data.candidate._id) {
@@ -43,7 +43,7 @@ function CodeVerification() {
       })
       .catch(() => {
         setLoading(false);
-        setError("code", { type: "manual", message: "Please enter a valid code" });
+        setError("code", { type: "manual", message: "Por favor ingresa un código válido" });
       });
   };
 
@@ -98,7 +98,7 @@ function CodeVerification() {
             </p>
           )}
           <div className="button-row">
-            <button type="submit" className="verify-btn">Verify</button>
+            <button type="submit" className="verify-btn">Verificar</button>
           </div>
         </form>
       </header>

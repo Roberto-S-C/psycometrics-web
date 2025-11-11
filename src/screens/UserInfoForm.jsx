@@ -17,6 +17,7 @@ export default function UserInfoForm({ defaultValues = {} }) {
   const navigate = useNavigate();
   const [alert, setAlert] = useState({ show: false, message: "" });
   const [loading, setLoading] = useState(false); // Add loading state
+  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 
   const onSubmit = async (data) => {
     setLoading(true); // Show Loading component
@@ -181,12 +182,16 @@ export default function UserInfoForm({ defaultValues = {} }) {
               <input
                 type="file"
                 accept=".pdf"
-                style={{ display: "none" }} // Hide the file input
-                {...register("resume", {
+                style={{ display: "none" }}                {...register("resume", {
                   required: "Por favor sube tu currículum",
                   validate: {
-                    isPdf: (fileList) =>
-                      fileList && fileList.length === 1 && fileList[0]?.type === "application/pdf" || "Only one PDF file is allowed",
+                    isPdfAndSize: (fileList) => {
+                      if (!fileList || fileList.length !== 1) return "Por favor sube tu currículum";
+                      const file = fileList[0];
+                      if (file.type !== "application/pdf") return "Solo se permiten archivos PDF";
+                      if (file.size > MAX_FILE_SIZE) return "El archivo debe pesar 5 MB o menos";
+                      return true;
+                    }
                   },
                 })}
               />
